@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  app:
+    container_name: web-service
+    image: our-e-commerce
+    build: .
+    volumes:
+      - .:/code
+    ports:
+      - '8080:8080'
+    depends_on:
+      - postgres
+    environment:
+      DEBUG: false
+      SPRING_PROFILES_ACTIVE: dev
+      SPRING_DATASOURCE_POSTGRES_URL: jdbc:postgresql://db:5432/postgres
+      SPRING_DATASOURCE_POSTGRES_USERNAME: sa
+      SPRING_DATASOURCE_POSTGRES_PASSWORD:
+
+  postgres:
+    image: postgres:13
+    container_name: our-db
+    ports:
+      - '5432:5432'
+    command: postgres -c 'max_connections=500'
+    environment:
+      POSTGRES_USER: sa
+      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_DB: java
