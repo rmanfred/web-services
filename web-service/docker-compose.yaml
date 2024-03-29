@@ -14,7 +14,7 @@ services:
     environment:
       DEBUG: false
       SPRING_PROFILES_ACTIVE: dev
-      SPRING_DATASOURCE_POSTGRES_URL: jdbc:postgresql://db:5432/postgres
+      SPRING_DATASOURCE_POSTGRES_URL: jdbc:postgresql://db:5432/postgres-web-service
       SPRING_DATASOURCE_POSTGRES_USERNAME: sa
       SPRING_DATASOURCE_POSTGRES_PASSWORD:
 

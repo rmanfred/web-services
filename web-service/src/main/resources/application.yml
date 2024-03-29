@@ -1,4 +1,7 @@
 spring:
+  profiles.active: dev
+---
+spring:
   application:
     name: web-service
   jpa:
@@ -9,7 +12,7 @@ spring:
     defer-datasource-initialization: true
   datasource:
     postgres:
-      url: jdbc:postgresql://localhost:5432/postgres
+      url: jdbc:postgresql://localhost:5432/postgres-web-service
       driverClassName: org.postgresql.Driver
   sql:
     init:
