@@ -15,7 +15,23 @@ public class CartController {
     @GetMapping("")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Object> getCartById(@RequestParam long id) {
+    public ResponseEntity<Object> getCartInfo(@RequestParam long id) {
         return ResponseEntity.status(HttpStatus.OK).body(null);
+    }
+
+    @PostMapping("/add")
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public void addItemToCart(@RequestParam long cartId,
+                              @RequestParam long productId) {
+
+    }
+
+    @PostMapping("/remove")
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public void removeItemFromCart(@RequestParam long cartId,
+                                   @RequestParam long productId) {
+
     }
 }

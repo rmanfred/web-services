@@ -1,5 +1,6 @@
 package com.example.webservice.model;
 
+import com.example.webservice.enums.OrderStatus;
 import com.example.webservice.enums.PaymentMethod;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
@@ -14,11 +15,11 @@ public class Order {
     @JoinColumn(name = "user_id")
     @JsonBackReference
     private User user;
-
     @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
-
     private double totalPrice;
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus;
 
     public Long getId() {
         return id;
@@ -50,6 +51,14 @@ public class Order {
 
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
     //todo: add payment or a separate entity?

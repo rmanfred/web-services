@@ -1,9 +1,9 @@
 package com.example.webservice.controller;
 
+import com.example.webservice.dto.UserDto;
 import com.example.webservice.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -12,10 +12,26 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("")
+    @PostMapping("/register")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Object> getUserById(@RequestParam long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(null);
+    public void registerUser(@RequestBody UserDto userDto) {
+
     }
+
+    @PostMapping("/log-in")
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public void logInUser(@RequestParam String userName,
+                          @RequestParam String password) {
+
+    }
+
+    @PostMapping("/update-info")
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public void updateUser(@RequestBody UserDto userDto) {
+
+    }
+
 }

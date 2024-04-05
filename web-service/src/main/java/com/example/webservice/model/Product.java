@@ -3,6 +3,8 @@ package com.example.webservice.model;
 import com.example.webservice.enums.Category;
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "products")
 public class Product {
@@ -17,6 +19,8 @@ public class Product {
     @ManyToOne
     private Cart cart;
     private long stock; // validation -> if enough stock for the product
+    @ElementCollection
+    private Set<Review> reviews;
 
     public Long getId() {
         return id;
@@ -72,6 +76,14 @@ public class Product {
 
     public void setStock(long stock) {
         this.stock = stock;
+    }
+
+    public Set<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Set<Review> reviews) {
+        this.reviews = reviews;
     }
 
     //price, discounts, size -> picture?
