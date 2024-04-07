@@ -15,23 +15,24 @@ public class UserController {
     @PostMapping("/register")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    public void registerUser(@RequestBody UserDto userDto) {
-
+    public long registerUser(@RequestBody UserDto userDto) {
+        return userService.registerUser(userDto);
     }
 
+    // return the cart id of the user
     @PostMapping("/log-in")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    public void logInUser(@RequestParam String userName,
+    public long logInUser(@RequestParam String userName,
                           @RequestParam String password) {
-
+        return userService.logInUser(userName, password);
     }
 
     @PostMapping("/update-info")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    public void updateUser(@RequestBody UserDto userDto) {
-
+    public void updateUserInfo(@RequestBody UserDto userDto) {
+        userService.updateUserInfo(userDto);
     }
 
 }

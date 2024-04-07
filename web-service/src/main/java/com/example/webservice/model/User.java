@@ -17,6 +17,7 @@ public class User {
     private String username;// come up with the rules -> validation
     private String password; // come up with the rules -> validation
     private Address address;
+    private long cartId;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Order> orders;
@@ -83,5 +84,13 @@ public class User {
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
+    }
+
+    public long getCartId() {
+        return cartId;
+    }
+
+    public void setCartId(long cartId) {
+        this.cartId = cartId;
     }
 }
