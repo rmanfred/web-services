@@ -41,12 +41,4 @@ public class CartController {
 
     }
 
-    @GetMapping("")
-    @ResponseBody
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<CartDto> getCartInfo(@RequestParam long id) {
-        CartDto cartDto = cartService.getCartInfo(id);
-        return ResponseEntity.status(HttpStatus.OK).body(cartDto);
-    }
-
 }
