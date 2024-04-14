@@ -24,6 +24,13 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
+    @GetMapping("/search")
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public List<ProductDto> getProductByName(@RequestParam String name) {
+        return productService.getProductByName(name);
+    }
+
     @GetMapping("/filter")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)

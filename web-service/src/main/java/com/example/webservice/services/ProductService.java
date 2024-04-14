@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -22,6 +23,13 @@ public class ProductService {
         } else {
             throw new NoSuchElementException("Didn't find the product with this id: "+id);
         }
+    }
+
+    public List<ProductDto> getProductByName(String name) {
+        List<Product> products = productRepository.findByTitleContainingIgnoreCase(name);
+        return products.stream()
+                .map(this::modelToDto)
+                .collect(Collectors.toList());
     }
 
     public List<ProductDto> getAllProducts() {
