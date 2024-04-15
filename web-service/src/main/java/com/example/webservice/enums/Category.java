@@ -1,5 +1,10 @@
 package com.example.webservice.enums;
 
 public enum Category {
-    SHOES
+    GLOVES,
+    SCARFS,
+    SHOES,
+    T_SHIRTS,
+    PANTS,
+    BACKPACKS
 }

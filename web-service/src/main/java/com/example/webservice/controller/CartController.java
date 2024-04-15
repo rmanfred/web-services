@@ -1,11 +1,9 @@
 package com.example.webservice.controller;
 
 import com.example.webservice.dto.CartDto;
-import com.example.webservice.dto.ProductDto;
 import com.example.webservice.services.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,20 +15,17 @@ public class CartController {
     @GetMapping("")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Object> getCartInfo(@RequestParam long id) {
-        // get the cart by id and display products and other info concerning the cart
-        return ResponseEntity.status(HttpStatus.OK).body(null);
+    public CartDto getCartInfo(@RequestParam long id) {
+        return cartService.getCartInfo(id);
     }
 
     @PostMapping("/add")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    public ProductDto addItemToCart(@RequestParam long cartId,
+    public void addItemToCart(@RequestParam long cartId,
                                     @RequestParam long productId,
                                     @RequestParam long quantity) {
-        //searches for cart in DB and for product in DB and then add the productId to map of
         cartService.addProductToCart(cartId, productId, quantity);
-        return null;
     }
 
     @PostMapping("/remove")
@@ -47,8 +42,8 @@ public class CartController {
     @PostMapping("/totalPrice")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    public double countTotalPrice(@RequestParam CartDto cartDto){
-        return cartService.countTotalPrice(cartDto);//This function will return a double value of totalPrice
+    public double countTotalPrice(@RequestParam long cartId){
+        return cartService.countTotalPrice(cartId);//This function will return a double value of totalPrice
     }
 
 }

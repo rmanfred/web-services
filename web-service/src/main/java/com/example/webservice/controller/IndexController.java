@@ -1,4 +1,4 @@
-package com.example.webservice.Controller;
+package com.example.webservice.controller;
 
 import com.example.webservice.model.User;
 import org.springframework.ui.Model;
