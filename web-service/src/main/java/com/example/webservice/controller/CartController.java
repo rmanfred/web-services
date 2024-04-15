@@ -29,6 +29,7 @@ public class CartController {
                                     @RequestParam long productId,
                                     @RequestParam long quantity) {
         //searches for cart in DB and for product in DB and then add the productId to map of
+        cartService.addProductToCart(cartId, productId, quantity);
         return null;
     }
 
@@ -38,7 +39,16 @@ public class CartController {
     public void removeItemFromCart(@RequestParam long cartId,
                                    @RequestParam long productId) {
         //here you need to be cautious with how you remove it -> because the value if the map can be > 1
+        cartService.deleteProductFromCart(cartId, productId);
+        // 1 by 1, if when remove one the total amount will decrease to 0, then remove this cart
 
+    }
+
+    @PostMapping("/totalPrice")
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public double countTotalPrice(@RequestParam CartDto cartDto){
+        return cartService.countTotalPrice(cartDto);//This function will return a double value of totalPrice
     }
 
 }

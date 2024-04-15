@@ -92,4 +92,17 @@ public class ProductService {
         productDto.setReviews(product.getReviews());
         return productDto;
     }
+
+    // Add a new product
+    public void addNewProduct(){
+        Product product = new Product();
+        productRepository.save(product);
+    }
+
+    // Delete a product
+    public void deleteProduct(long idProduct){
+        productRepository.deleteById(idProduct);
+    }
+
+    //
 }

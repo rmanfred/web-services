@@ -1,6 +1,9 @@
 package com.example.webservice.services;
 
+import com.example.webservice.dto.CartDto;
+import com.example.webservice.dto.OrderDto;
 import com.example.webservice.model.Cart;
+import com.example.webservice.model.Order;
 import com.example.webservice.model.Product;
 import com.example.webservice.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +28,15 @@ public class CartService {
         else {
             throw new NoSuchElementException("Didn't find the cart with this id: "+id);
         }
+    }
+
+    private CartDto modelToDto(Cart cart) {
+        var cartDto = new CartDto();
+        cartDto.setId(cart.getId());
+        cartDto.setTotalPrice(cart.getTotalPrice());
+        cartDto.setProducts();//This one need to change cart or cartDto?
+
+        return cartDto;
     }
 
     // Add a cart
@@ -80,8 +92,9 @@ public class CartService {
     }
 
     // Count total price, we assume that the initial total price equals to 0
-    public void countTotalPrice(long idCart, double totalPrice){
-        Cart cart = findCartById(idCart);
+    public double countTotalPrice(CartDto cartDto){
+        double totalPrice = 0;
+        Cart cart = findCartById(cartDto.getId());
         Map<Long, Long> products = cart.getProducts();
         // if there is no products in the cart, total price = 0
         if (products.isEmpty()){
@@ -100,6 +113,7 @@ public class CartService {
             }
         }
         cartRepository.save(cart);
+        return totalPrice;
     }
 
 
