@@ -23,9 +23,9 @@ public class OrderController {
     @PostMapping("/place")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    public void placeOrder(@RequestBody OrderDto orderDto) {
-        //it means user fill in the info about payment/address etc.
-        // you make an entity of order with all info and change the status
+    public long placeOrder(@RequestParam long userId,
+                           @RequestBody OrderDto orderDto) {
+        return orderService.placeOrder(orderDto, userId);
     }
 
 }

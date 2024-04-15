@@ -1,8 +1,10 @@
 package com.example.webservice.services;
 
 import com.example.webservice.dto.OrderDto;
+import com.example.webservice.enums.OrderStatus;
 import com.example.webservice.model.Order;
 import com.example.webservice.repository.OrderRepository;
+import com.example.webservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,8 @@ import java.util.Optional;
 public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     public Order findOrderById (long id) {
         Optional<Order> order = orderRepository.findById(id);
@@ -37,5 +41,18 @@ public class OrderService {
         orderDto.setUserId(order.getUser().getId());
 
         return orderDto;
+    }
+
+    public long placeOrder(OrderDto orderDto, long userId) {
+        var user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException(String.format("In DB there is no user with id %d", userId)));
+        var order = new Order();
+        order.setUser(user);
+        order.setTotalPrice(orderDto.getTotalPrice());
+        order.setOrderStatus(OrderStatus.CREATED);
+        order.setPaymentMethod(orderDto.getPaymentMethod());
+
+        order = orderRepository.save(order);
+        return order.getId();
     }
 }
