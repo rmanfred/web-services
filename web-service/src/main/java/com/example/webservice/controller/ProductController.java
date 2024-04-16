@@ -66,4 +66,18 @@ public class ProductController {
                 .map(Enum::name)
                 .collect(Collectors.toSet());
     }
+
+    @DeleteMapping("")
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteProductById(@RequestParam long productId) {
+        productService.deleteProduct(productId);
+    }
+
+    @PostMapping("/add")
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public void addProduct(@RequestBody ProductDto productDto) {
+        productService.addNewProduct(productDto);
+    }
 }

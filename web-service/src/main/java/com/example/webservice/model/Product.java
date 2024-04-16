@@ -16,8 +16,6 @@ public class Product {
     private String title;
     private String description;
     private double price;
-    @ManyToOne
-    private Cart cart;
     private long stock; // validation -> if enough stock for the product
     @ElementCollection
     @CollectionTable(name = "reviews", joinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "id")})
@@ -73,14 +71,6 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
     }
 
     public long getStock() {

@@ -5,6 +5,8 @@ import com.example.webservice.enums.PaymentMethod;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "orders")
 public class Order {
@@ -20,6 +22,11 @@ public class Order {
     private double totalPrice;
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
+
+    @ElementCollection
+    @CollectionTable(name = "order_products", joinColumns = {@JoinColumn(name = "order_id", referencedColumnName = "id")})
+    @Column(name = "product_id")
+    private Set<Long> products;
 
     public Long getId() {
         return id;
@@ -59,6 +66,14 @@ public class Order {
 
     public void setOrderStatus(OrderStatus orderStatus) {
         this.orderStatus = orderStatus;
+    }
+
+    public Set<Long> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Long> products) {
+        this.products = products;
     }
 
     //todo: add payment or a separate entity?

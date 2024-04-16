@@ -23,9 +23,8 @@ public class OrderController {
     @PostMapping("/place")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    public long placeOrder(@RequestParam long userId,
-                           @RequestBody OrderDto orderDto) {
-        return orderService.placeOrder(orderDto, userId);
+    public long placeOrder(@RequestBody OrderDto orderDto) {
+        return orderService.placeOrder(orderDto);
     }
 
 }

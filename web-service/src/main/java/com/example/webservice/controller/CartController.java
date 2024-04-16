@@ -23,8 +23,8 @@ public class CartController {
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public void addItemToCart(@RequestParam long cartId,
-                                    @RequestParam long productId,
-                                    @RequestParam long quantity) {
+                              @RequestParam long productId,
+                              @RequestParam long quantity) {
         cartService.addProductToCart(cartId, productId, quantity);
     }
 
@@ -39,7 +39,7 @@ public class CartController {
 
     }
 
-    @PostMapping("/totalPrice")
+    @GetMapping("/totalPrice")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public double countTotalPrice(@RequestParam long cartId){

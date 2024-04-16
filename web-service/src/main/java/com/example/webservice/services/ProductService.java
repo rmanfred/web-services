@@ -127,9 +127,20 @@ public class ProductService {
         return productDto;
     }
 
+    private Product dtoToModel(ProductDto productDto) {
+        var product = new Product();
+        product.setTitle(productDto.getTitle());
+        product.setCategory(productDto.getCategory());
+        product.setDescription(productDto.getDescription());
+        product.setPrice(productDto.getPrice());
+        product.setStock(product.getStock());
+
+        return product;
+    }
+
     // Add a new product
-    public void addNewProduct(){
-        Product product = new Product();
+    public void addNewProduct(ProductDto productDto){
+        var product = dtoToModel(productDto);
         productRepository.save(product);
     }
 
@@ -137,6 +148,4 @@ public class ProductService {
     public void deleteProduct(long idProduct){
         productRepository.deleteById(idProduct);
     }
-
-    //
 }
