@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/product")
@@ -55,4 +57,13 @@ public class ProductController {
         return productService.getReviewsOfProduct(productId);
     }
 
+//To get categories from the enum for filetring
+    @GetMapping("/categories")
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public Set<String> getCategories() {
+        return Arrays.stream(Category.values())
+                .map(Enum::name)
+                .collect(Collectors.toSet());
+    }
 }

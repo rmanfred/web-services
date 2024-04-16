@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to E-Commerce</title>
+    <link rel="stylesheet" href="/welcome.css">
+</head>
+
+<body>
+    <header>
+        <div class="title">
+            <h1>E-Commerce</h1>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search E-Commerce">
+            <button type="submit">Search</button>
+        </div>
+
+        <div class="icon-container">
+            <div class="login-icon">
+                <a id="loginLink" href="#">
+                    <img src="/login-icon.jpeg" alt="Login Icon">
+                </a>
+            </div>
+            <div class="cart-icon">
+                <a id="cartLink" href="#">
+                    <img src="/cart-icon.png" alt="Cart Icon">
+                </a>
+            </div>
+        </div>
+
+
+
+        <div id="loading-indicator" style="display: none;">Loading...</div>
+    </header>
+
+    <div class="filter-banner">
+        <div class="filters">
+            <select id="category-filter">
+                <option value="">All Categories</option>
+                <!-- Categories will be added here dynamically -->
+            </select>
+            <input type="number" id="price-down-limit" placeholder="Min Price" min="0" max="1000">
+            <input type="number" id="price-up-limit" placeholder="Max Price" min="0" max="1000">
+            <button onclick="applyFilters()">Apply Filters</button>
+        </div>
+    </div>
+
+    <main>
+        <!-- Product cards will be rendered here -->
+    </main>
+
+    <script src="/welcome.js"></script>
+</body>
+
+</html>

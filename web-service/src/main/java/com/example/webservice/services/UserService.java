@@ -23,7 +23,7 @@ public class UserService {
     @Autowired
     private OrderService orderService;
 
-    public User findUserById (long id){
+    public User findUserById(long id){
         Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
             return user.get();
@@ -46,12 +46,25 @@ public class UserService {
         return user.getId();
     }
 
+//    public long logInUser(String userName, String password) {
+//        var user = userRepository.findByUsernameAndPassword(userName, password)
+//                .orElseThrow(() -> new RuntimeException(String.format("In DB there is no user with userName %d", userName)));
+//
+//        return user.getCartId();
+//    }
     public long logInUser(String userName, String password) {
-        var user = userRepository.findByUsernameAndPassword(userName, password)
-                .orElseThrow(() -> new RuntimeException(String.format("In DB there is no user with userName %d", userName)));
+        try {
+            var user = userRepository.findByUsernameAndPassword(userName, password)
+                    .orElseThrow(() -> new RuntimeException("No user found with provided credentials"));
 
-        return user.getCartId();
+            return user.getCartId();
+        } catch (Exception e) {
+            // Log the exception details to help with debugging
+            System.out.println("Failed to log in: " + e.getMessage());
+            throw e;  // Re-throwing the exception or handle it appropriately
+        }
     }
+
 
     // Delete a user
     public void deleteUser(long idUser){
