@@ -20,7 +20,20 @@ public class Product {
     private Cart cart;
     private long stock; // validation -> if enough stock for the product
     @ElementCollection
+    @CollectionTable(name = "reviews", joinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "id")})
+    @Column(name = "reviews")
     private Set<Review> reviews;
+
+    public Product() {}
+
+    public Product(Category category, String title, String description,
+                   double price, long stock) {
+        this.category = category;
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.stock = stock;
+    }
 
     public Long getId() {
         return id;

@@ -13,5 +13,4 @@ public class CartDto {
     private Long id;
     private double totalPrice;
     private List<ProductDto> products;
-    //todo: how to send products?
 }
