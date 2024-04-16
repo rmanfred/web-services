@@ -1,0 +1,64 @@
+/* Custom CSS for the index page */
+
+/* Apply font-family and background-color to the entire body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Center-align the heading and set its color */
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Style the form */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style labels */
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+/* Style text input fields */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Style the button */
+/* Style the sign-in button */
+button {
+    /* Remove width: 100%; to prevent the button from taking up full width */
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    /* Add margin to the button to create space around it */
+    margin: 0 auto; /* Centers the button horizontally */
+    display: block; /* Makes the button a block element, taking up only the necessary width */
+    width: fit-content; /* Sets the width of the button to fit its content */
+}
+
+
+/* Change button background color on hover */
+button:hover {
+    background-color: #0056b3;
+}

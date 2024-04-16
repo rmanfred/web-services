@@ -4,6 +4,7 @@ import com.example.webservice.dto.UserDto;
 import com.example.webservice.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,6 +19,7 @@ public class UserController {
     public long registerUser(@RequestBody UserDto userDto) {
         return userService.registerUser(userDto);
     }
+
 
     // return the cart id of the user
     @PostMapping("/log-in")
